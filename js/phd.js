@@ -55,7 +55,7 @@ $(function() {
 	    		form.append("format","json");
 	    		
 	    		var xhr = new XMLHttpRequest;
-				xhr.open('POST', 'http://www.ziftapp.com/dev/api/ziftapi.php', true);
+				xhr.open('POST', '/dev/api/ziftapi.php', true);
 				xhr.onload = function() {
     				if (this.status == 200) {
 	      				var resp = JSON.parse(this.response);
