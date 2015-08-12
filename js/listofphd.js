@@ -1,0 +1,82 @@
+$(function() {
+	var url = "/dev/api/ziftapi.php?method=showPHD&format=json";
+	$("#listOfPartyHardDriverServices tbody").html("");
+	$.getJSON(url, function(response) {
+		if($.isArray(response.showPHDList) && response.showPHDList.length) {
+			var headRow = '<th style="text-align:center">Image</th><th style="text-align:center">Service Name</th><th style="text-align:center">Mobile No.</th><th style="text-align:center">City</th><th style="text-align:center">Is Verify</th>'; 
+			$(headRow).appendTo("#listOfPartyHardDriverServices thead");
+			$.each(response.showPHDList, function(i, phdList) {
+				if(phdList.image_path!=="") {
+					var imageName = phdList.image_path; 
+				}
+				else {
+					var imageName = "default_image.png";
+				}
+				
+				var newRow = "<tr id=phdService_"+phdList.mobileno+">" + 
+				'<td align="center"><img height="80px" width="80px" src="/dev/phd_images/' + imageName + '"/></td>' + 
+				'<td align="center">' + phdList.serviceName + '</td>' + 
+				'<td align="center">' + phdList.mobileno + '</td>' + 
+				'<td align="center">' + phdList.city + '</td>' + 
+				'<td align="center" class="verification">' + displayTrueFalseForInt(parseInt(phdList.isVerify)) + '</td>' + 
+				'<td align="center">' + "<button class=\'verifiedbtn\' onclick= \'verifiedPHDService(\""+phdList.mobileno+"\", event, this)\'>Verify</button>" + '</td>' +
+				'<td align="center">' + "<button class=\'delbtn\' onclick= \'deletePHDService(\""+phdList.mobileno+"\", \""+imageName+"\", event, this)\'>Delete</button>" + '</td>' + 
+				"</tr>"; 
+				$(newRow).appendTo("#listOfPartyHardDriverServices tbody");
+			});
+		}
+		else {
+			alert("No Party Hard Services in the database!");
+		}
+	});
+});
+
+function displayTrueFalseForInt(isVerified) {
+	if(isVerified === 0) {
+		return "Not Verified";
+	}
+	return "Verified";
+}
+
+function verifiedPHDService(mobileno, event, verifiedrow) {
+	var data = {
+		mobileno : mobileno,
+		isVerify : 1,
+		method : 'verifyPHD',
+		format : 'json'
+	};
+	jQuery.ajax({
+		url : '/dev/api/ziftapi.php',
+		type : "POST",
+		data : data,
+		success : function() {
+			alert('Verified successfully');
+			var phdServiceVerifying = "phdService_"+mobileno;
+			$("#"+phdServiceVerifying).children(".verification").html("Verified");
+		},
+		error : function() {
+			alert('There is error while verify');
+		}
+	});
+}
+
+function deletePHDService(mobileno, imageName, event, delrow) {
+	var data = {
+		mobileno : mobileno,
+		imageName : imageName,
+		method : 'deletePHD',
+		format : 'json'
+	};
+	jQuery.ajax({
+		url : '/dev/api/ziftapi.php',
+		type : "POST",
+		data : data,
+		success : function() {
+			alert('Deleted successfully');
+			$(delrow).parent().parent().remove();
+		},
+		error : function() {
+			alert('There is error while delete');
+		}
+	});
+}
