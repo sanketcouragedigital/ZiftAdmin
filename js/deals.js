@@ -71,6 +71,12 @@ $(function() {
 	      				}
 	      				else {
 	      					alert("Deal saved successfully!");
+	      					$('#logochooser').replaceWith($('#logochooser').clone());
+	      					$('#companyName').val('');
+	      					$('#offer').val('');
+	      					$('#offerCode').val('');
+	      					$('#validUptoDate').datepicker('setDate', null);
+	      					$("#offerTerms").siblings("iframe.wysihtml5-sandbox").contents().find('body').html(""); //This is because offerterms creates an inline iframe as per the used LTE Admin Template.
 	      				}
     				};
   				};

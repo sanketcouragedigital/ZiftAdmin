@@ -21,15 +21,15 @@ $(function() {
 				var validUptoDate = dd+"/"+mm+"/"+yyyy;
 				
 				var newRow = "<tr id=dealsOffer_"+dealsList.offerCode+">" + 
-				'<td align="center"><img height="80px" width="80px" src="/dev/deals_images/' + imageName + '"/></td>' + 
-				'<td align="center">' + dealsList.companyName + '</td>' + 
-				'<td align="center">' + dealsList.offer + '</td>' + 
-				'<td align="center">' + dealsList.offerCode + '</td>' + 
-				'<td align="center">' + validUptoDate + '</td>' + 
-				'<td align="center">' + dealsList.offerTerms + '</td>' + 
-				'<td align="center" class="verification">' + displayTrueFalseForInt(parseInt(dealsList.isVerify)) + '</td>' + 
-				'<td align="center">' + "<button class=\'verifiedbtn\' onclick= \'verifiedDealByOfferCode(\""+dealsList.offerCode+"\", event, this)\'>Verify</button>" + '</td>' +
-				'<td align="center">' + "<button class=\'delbtn\' onclick= \'deleteDealByOfferCode(\""+dealsList.offerCode+"\", \""+imageName+"\", event, this)\'>Delete</button>" + '</td>' + 
+				'<td align="center" style="padding:5px"><img height="80px" width="80px" src="/dev/deals_images/' + imageName + '"/></td>' + 
+				'<td align="center" style="padding:5px">' + dealsList.companyName + '</td>' + 
+				'<td align="center" style="padding:5px">' + dealsList.offer + '</td>' + 
+				'<td align="center" style="padding:5px">' + dealsList.offerCode + '</td>' + 
+				'<td align="center" style="padding:5px">' + validUptoDate + '</td>' + 
+				'<td align="center" style="padding:5px">' + dealsList.offerTerms + '</td>' + 
+				'<td align="center" class="verification" style="padding:5px">' + displayTrueFalseForInt(parseInt(dealsList.isVerify)) + '</td>' + 
+				'<td align="center" style="padding:5px">' + "<button class=\'verifiedbtn\' onclick= \'verifiedDealByOfferCode(\""+dealsList.offerCode+"\", event, this)\'>Verify</button>" + '</td>' +
+				'<td align="center" style="padding:5px">' + "<button class=\'delbtn\' onclick= \'deleteDealByOfferCode(\""+dealsList.offerCode+"\", \""+imageName+"\", event, this)\'>Delete</button>" + '</td>' + 
 				"</tr>"; 
 				$(newRow).appendTo("#listOfDeals tbody");
 			});

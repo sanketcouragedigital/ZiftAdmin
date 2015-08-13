@@ -14,13 +14,13 @@ $(function() {
 				}
 				
 				var newRow = "<tr id=phdService_"+phdList.mobileno+">" + 
-				'<td align="center"><img height="80px" width="80px" src="/dev/phd_images/' + imageName + '"/></td>' + 
-				'<td align="center">' + phdList.serviceName + '</td>' + 
-				'<td align="center">' + phdList.mobileno + '</td>' + 
-				'<td align="center">' + phdList.city + '</td>' + 
-				'<td align="center" class="verification">' + displayTrueFalseForInt(parseInt(phdList.isVerify)) + '</td>' + 
-				'<td align="center">' + "<button class=\'verifiedbtn\' onclick= \'verifiedPHDService(\""+phdList.mobileno+"\", event, this)\'>Verify</button>" + '</td>' +
-				'<td align="center">' + "<button class=\'delbtn\' onclick= \'deletePHDService(\""+phdList.mobileno+"\", \""+imageName+"\", event, this)\'>Delete</button>" + '</td>' + 
+				'<td align="center" style="padding:5px"><img height="80px" width="80px" src="/dev/phd_images/' + imageName + '"/></td>' + 
+				'<td align="center" style="padding:5px">' + phdList.serviceName + '</td>' + 
+				'<td align="center" style="padding:5px">' + phdList.mobileno + '</td>' + 
+				'<td align="center" style="padding:5px">' + phdList.city + '</td>' + 
+				'<td align="center" class="verification" style="padding:5px">' + displayTrueFalseForInt(parseInt(phdList.isVerify)) + '</td>' + 
+				'<td align="center" style="padding:5px">' + "<button class=\'verifiedbtn\' onclick= \'verifiedPHDService(\""+phdList.mobileno+"\", event, this)\'>Verify</button>" + '</td>' +
+				'<td align="center" style="padding:5px">' + "<button class=\'delbtn\' onclick= \'deletePHDService(\""+phdList.mobileno+"\", \""+imageName+"\", event, this)\'>Delete</button>" + '</td>' + 
 				"</tr>"; 
 				$(newRow).appendTo("#listOfPartyHardDriverServices tbody");
 			});

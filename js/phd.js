@@ -64,6 +64,10 @@ $(function() {
 	      				}
 	      				else {
 	      					alert("Logo saved successfully!");
+	      					$('#logochooser').replaceWith($('#logochooser').clone());
+	      					$('#serviceName').val('');
+	      					$('#mobileno').val('');
+	      					$('#city').val('');
 	      				}
     				}
   				};
