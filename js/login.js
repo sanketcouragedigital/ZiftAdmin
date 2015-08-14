@@ -28,7 +28,7 @@ $(function() {
 				method : "login",
 				format : "json"
 			};		
-			$.post("http://localhost/ZiftAPI/api/ziftAdminLoginAPI.php", data).done(function(response) {
+			$.post("dev/api/ziftAdminLoginAPI.php", data).done(function(response) {
 				if(response.loginStatus==="LOGIN_FAILED") {
 					alert('There is error while login! Please check your Credentials');
 				}
