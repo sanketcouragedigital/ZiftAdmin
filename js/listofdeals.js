@@ -1,3 +1,8 @@
+if(!(sessionStorage.getItem("username")==="admin") && !(sessionStorage.getItem("password")==="510a81bd12cbe23889cf1f90440085420f1e9c27")){
+	sessionStorage.setItem("url",document.URL);
+	window.location.href="login.html";
+}
+
 $(function() {
 	var url = "/dev/api/ziftapi.php?method=showDeals&format=json";
 	$("#listOfDeals tbody").html("");
