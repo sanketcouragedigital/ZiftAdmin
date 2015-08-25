@@ -5,8 +5,8 @@ if(!(sessionStorage.getItem("username")==="admin") && !(sessionStorage.getItem("
 
 $(function() {
 	$.validator.addMethod('customMobile', function(value, element) {
-		return this.optional(element) || /^([789]\d{9})$/.test(value);
-	}, "Please enter a valid 10 digit number");
+		return this.optional(element) || /^([0-9]+)$/.test(value);
+	}, "Please enter only numbers");
 
 	$('#phdForm').validate({
         rules: {
@@ -65,10 +65,10 @@ $(function() {
     				if (this.status == 200) {
 	      				var resp = JSON.parse(this.response);
 	      				if(resp.responsePHD=="ERROR"){
-	      					alert("Logo not saved!");
+	      					alert("Party Hard Driver not saved!");
 	      				}
 	      				else {
-	      					alert("Logo saved successfully!");
+	      					alert("Party Hard Driver saved successfully!");
 	      					$('#logochooser').replaceWith($('#logochooser').clone());
 	      					$('#serviceName').val('');
 	      					$('#mobileno').val('');
