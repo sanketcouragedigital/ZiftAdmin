@@ -13,10 +13,6 @@ $(function() {
             	required : true
             },
             offerCode : {
-            	required : true,
-            	maxlength : 10
-            },
-            validUptoDate : {
             	required : true
             }
         },
@@ -29,9 +25,6 @@ $(function() {
 			},
 			offerCode : {
 				required : "Please enter Offer Code"
-			},
-			validUptoDate : {
-				required : "Please enter Valid Upto Date"
 			}
 		},
         errorPlacement: function( error, element ) {
@@ -40,7 +33,7 @@ $(function() {
     });
     
     $("#dealssubmit").click(function() {
-		if($('#companyName').valid() && $('#offer').valid() && $('#offerCode').valid() && $('#validUptoDate').valid()) {
+		if($('#companyName').valid() && $('#offer').valid() && $('#offerCode').valid()) {
 			if(document.getElementById("logochooser").value != "") {
 				var isValidFile=validateFile();
 			}
@@ -67,7 +60,7 @@ $(function() {
 	    		form.append("format","json");
 	    		
 	    		var xhr = new XMLHttpRequest;
-				xhr.open('POST', '/dev/api/ziftapi.php', true);
+				xhr.open('POST', '/ZiftAPI/api/ziftapi.php', true);
 				xhr.onload = function() {
     				if (this.status == 200) {
 	      				var resp = JSON.parse(this.response);

@@ -30,7 +30,7 @@ $(function() {
 				'<td align="center" style="padding:5px">' + dealsList.companyName + '</td>' + 
 				'<td align="center" style="padding:5px">' + dealsList.offer + '</td>' + 
 				'<td align="center" style="padding:5px">' + dealsList.offerCode + '</td>' + 
-				'<td align="center" style="padding:5px">' + validUptoDate + '</td>' + 
+				'<td align="center" style="padding:5px">' + checkValidUptoDate(validUptoDate) + '</td>' + 
 				'<td align="center" style="padding:5px">' + dealsList.offerTerms + '</td>' + 
 				'<td align="center" class="verification" style="padding:5px">' + displayTrueFalseForInt(parseInt(dealsList.isVerify)) + '</td>' + 
 				'<td align="center" style="padding:5px">' + "<button class=\'verifiedbtn\' onclick= \'verifiedDealByOfferCode(\""+dealsList.offerCode+"\", event, this)\'>Verify</button>" + '</td>' +
@@ -44,6 +44,13 @@ $(function() {
 		}
 	});
 });
+
+function checkValidUptoDate(validUptoDate) {
+	if(validUptoDate==="00/00/0000") {
+		return "";
+	}
+	return validUptoDate;
+}
 
 function displayTrueFalseForInt(isVerified) {
 	if(isVerified === 0) {

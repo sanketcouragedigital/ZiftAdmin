@@ -17,7 +17,13 @@ $(function() {
 		if($('#username').valid() && $('#password').valid()) {
 			var fullURL = sessionStorage.getItem("url");
 			var separateURL =  fullURL.split("/");
-			var url = separateURL[4];
+			if(separateURL[4]!=="") {
+				var url = separateURL[4];
+			}
+			else {
+				var url = "index.html";
+			}
+			
 			
 			var username = $("#username").val();
 			var password = SHA1($("#password").val());
@@ -28,7 +34,7 @@ $(function() {
 				method : "login",
 				format : "json"
 			};		
-			$.post("dev/api/ziftAdminLoginAPI.php", data).done(function(response) {
+			$.post("/dev/api/ziftAdminLoginAPI.php", data).done(function(response) {
 				if(response.loginStatus==="LOGIN_FAILED") {
 					alert('There is error while login! Please check your Credentials');
 				}
