@@ -35,15 +35,13 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="js/jquery-ui/jquery-ui.css"></script>
     <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery-ui/jquery-ui.js"></script>
+    <script src="js/urlenvironment.js"></script>
+    <script src="js/taxiservicesincity.js"></script>
     <script src="js/jquery-validation-1.13.1/lib/jquery.js"></script>
     <script src="js/jquery-validation-1.13.1/dist/jquery.validate.js"></script>
-    <script>
-    	if(!(sessionStorage.getItem("username")==="admin") && !(sessionStorage.getItem("password")==="510a81bd12cbe23889cf1f90440085420f1e9c27")){
-			sessionStorage.setItem("url",document.URL);
-			window.location.href="login.html";
-		}
-    </script>
   </head>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -68,6 +66,7 @@
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">
@@ -78,7 +77,7 @@
                 <li><a href="phd.html"><i class="fa fa-circle-o"></i> Add New PHD Service </a></li>
                 <li><a href="deals.html"><i class="fa fa-circle-o"></i> Add New Deals </a></li>
                 <li><a href="taxiservicetypes.html"><i class="fa fa-circle-o"></i> Add New Taxi Service Type </a></li>
-                <li><a href="taxiservicesincity.html"><i class="fa fa-circle-o"></i> Add New Taxi Services City Wise </a></li>
+                <li class="active"><a href="taxiservicesincity.html"><i class="fa fa-circle-o"></i> Add New Taxi Services City Wise </a></li>
                 <li><a href="listofphd.html"><i class="fa fa-circle-o"></i> Show All PHD Services </a></li>
                 <li><a href="listofdeals.html"><i class="fa fa-circle-o"></i> Show All Deals </a></li>
               </ul>
@@ -96,17 +95,65 @@
             Admin Panel
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="index.html"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Taxi Services City Wise</li>
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-              
-              Welcome to the Courage Digital
-              
+              <div class="box box-info">
+                <div class="box-header">
+                  <h3 class="box-title">Taxi Services City Wise</h3>
+                </div>
+                <div class="box-body">
+                  <form id="taxiServicesCityWise" enctype="multipart/form-data">
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="city" name="city" placeholder="City" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="tel" class="form-control" id="contact" name="contact" placeholder="Contact No" />
+                    </div>
+                    <div class="form-group">
+	                    <select class="form-control select2" id="serviceType" name="serviceType">
+	                      <option selected="selected" disabled="disabled" value="Select Taxi Service Type">Select Taxi Service Type</option>
+	                    </select>
+                  	</div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="firstXKM" name="firstXKM" placeholder="First X KM" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="dayCost" name="dayCost" placeholder="Day Cost of Taxi" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="nightCost" name="nightCost" placeholder="Night Cost of Taxi" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="dayCostPerKM" name="dayCostPerKM" placeholder="Day Cost Per KM" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="nightCostPerKM" name="nightCostPerKM" placeholder="Night Cost Per KM" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="perMinuteRate" name="perMinuteRate" placeholder="Per Minute Rate of Taxi" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="dayWaitingCharges" name="dayWaitingCharges" placeholder="Waiting Charges of Day" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="nightWaitingCharges" name="nightWaitingCharges" placeholder="Waiting Charges of Night" />
+                    </div>
+                    <div class="form-group">
+                      	<input type="text" class="form-control" id="minimumRatesOfTaxi" name="minimumRatesOfTaxi" placeholder="Minimum Rates Of Taxi Service" />
+                    </div>
+                  </form>
+                </div>
+                <div class="box-footer clearfix">
+                  <button class="pull-right btn btn-default" id="taxiservicescitysubmit">Submit</button>
+                </div>
+              </div>
 
-            </section>
+            </section><!-- /.Left col -->
             
           </div><!-- /.row (main row) -->
 
@@ -118,13 +165,6 @@
         </div>
         <strong>Copyright &copy;<a href="http://couragedigital.com">Courage Digital</a>.</strong> All rights reserved.
       </footer>
-
-      <!-- Control Sidebar -->
-      <as
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
 
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>

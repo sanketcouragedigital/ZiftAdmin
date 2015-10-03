@@ -4,77 +4,88 @@ if(!(sessionStorage.getItem("username")==="admin") && !(sessionStorage.getItem("
 }
 
 $(function() {
-	$.validator.addMethod('customMobile', function(value, element) {
-		return this.optional(element) || /^([0-9]+)$/.test(value);
-	}, "Please enter only numbers");
-
-	$('#phdForm').validate({
+	$('#taxiServiceTypeForm').validate({
         rules: {
-        	serviceName : {
+        	logochooser : {
+        		required : true,
+        		accept: "image/*"
+        	},
+        	owner : {
         		required : true
         	},
-            mobileno : {
-            	customMobile : true,
+            serviceType : {
             	required : true
             },
-            city : {
+            appLink : {
+            	url : true
+            },
+            termsAndConditions : {
             	required : true
             }
         },
         messages : {
-        	serviceName : {
-        		required : "Please enter Service Name."
+        	logochooser : {
+        		required : "Please select a Taxi Owner Image.",
+        		accept: "Please select only image file."
         	},
-			mobileno : {
-				required : "Please enter a Mobile No."
+        	owner : {
+        		required : "Please enter Taxi Owner."
+        	},
+			serviceType : {
+				required : "Please enter Taxi Service Type."
 			},
-			city : {
-				required : "Please enter City."
-			}
+			termsAndConditions : {
+            	required : "Please enter a Terms & Conditions of the Taxi Owner."
+            }
 		},
         errorPlacement: function( error, element ) {
 			error.insertAfter( element.parent() );
 		}
     });
     
-    $("#phdsubmit").click(function() {
-		if($('#serviceName').valid() && $('#mobileno').valid() && $('#city').valid()) {		
+    $("#taxiservicetypesubmit").click(function() {
+		if($('#owner').valid() && $('#serviceType').valid() && $('#termsAndConditions').valid()) {		
 			if(document.getElementById("logochooser").value != "") {
 				var isValidFile=validateFile();
 			}
 			var form = new FormData(this);
-			var serviceName = $("#serviceName").val();
-			var mobileno = $("#mobileno").val();
-			var city = $("#city").val();
+			var owner = $("#owner").val();
+			var serviceType = $("#serviceType").val();
+			var fleet = $("#fleet").val();
+			var appLink = $("#appLink").val();
+			var termsAndConditions = $("#termsAndConditions").val();
 			if(isValidFile==true){
 				var logo = $('#logochooser')[0].files[0];
 				form.append("logo", logo);
 			} else if(isValidFile==false) {
 				return false;
 			}  	
-	    		form.append("serviceName",serviceName);
-	    		form.append("mobileno",mobileno);
-	    		form.append("city",city);
-	    		form.append("isVerify","false");
-	    		form.append("method","phd");
+	    		form.append("owner",owner);
+	    		form.append("serviceType",serviceType);
+	    		form.append("fleet",fleet);
+	    		form.append("appLink",appLink);
+	    		form.append("termsAndConditions",termsAndConditions);
+	    		form.append("method","taxiServiceType");
 	    		form.append("format","json");
 	    		
-	    		var env = environment.getenv();
+	    		var env = environment.getEnv();
 	    		
 	    		var xhr = new XMLHttpRequest;
 				xhr.open('POST', '/'+env+'/api/ziftapi.php', true);
 				xhr.onload = function() {
     				if (this.status == 200) {
 	      				var resp = JSON.parse(this.response);
-	      				if(resp.responsePHD=="ERROR"){
-	      					alert("Party Hard Driver not saved!");
+	      				if(resp.responseTaxiServiceType=="ERROR"){
+	      					alert("Taxi Service Type not saved!");
 	      				}
 	      				else {
-	      					alert("Party Hard Driver saved successfully!");
+	      					alert("Taxi Service Type saved successfully!");
 	      					$('#logochooser').replaceWith($('#logochooser').clone());
-	      					$('#serviceName').val('');
-	      					$('#mobileno').val('');
-	      					$('#city').val('');
+	      					$('#owner').val('');
+	      					$('#serviceType').val('');
+	      					$('#fleet').val('');
+	      					$('#appLink').val('');
+	      					$('#termsAndConditions').val('');
 	      				}
     				}
   				};

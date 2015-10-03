@@ -4,7 +4,8 @@ if(!(sessionStorage.getItem("username")==="admin") && !(sessionStorage.getItem("
 }
 
 $(function() {
-	var url = "/dev/api/ziftapi.php?method=showDeals&format=json";
+	var env = environment.getenv();
+	var url = "/"+env+"/api/ziftapi.php?method=showDeals&format=json";
 	$("#listOfDeals tbody").html("");
 	$.getJSON(url, function(response) {
 		if($.isArray(response.showDealsList) && response.showDealsList.length) {
@@ -66,8 +67,11 @@ function verifiedDealByOfferCode(offerCode, event, verifiedrow) {
 		method : 'verifyDeals',
 		format : 'json'
 	};
+	
+	var env = environment.getenv();
+	
 	jQuery.ajax({
-		url : '/dev/api/ziftapi.php',
+		url : '/'+env+'/api/ziftapi.php',
 		type : "POST",
 		data : data,
 		success : function() {
@@ -88,8 +92,11 @@ function deleteDealByOfferCode(offerCode, imageName, event, delrow) {
 		method : 'deleteDeals',
 		format : 'json'
 	};
+	
+	var env = environment.getenv();
+	
 	jQuery.ajax({
-		url : '/dev/api/ziftapi.php',
+		url : '/'+env+'/api/ziftapi.php',
 		type : "POST",
 		data : data,
 		success : function() {

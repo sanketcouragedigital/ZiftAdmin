@@ -59,8 +59,10 @@ $(function() {
 	    		form.append("method","deals");
 	    		form.append("format","json");
 	    		
+	    		var env = environment.getenv();
+	    		
 	    		var xhr = new XMLHttpRequest;
-				xhr.open('POST', '/dev/api/ziftapi.php', true);
+				xhr.open('POST', '/'+env+'/api/ziftapi.php', true);
 				xhr.onload = function() {
     				if (this.status == 200) {
 	      				var resp = JSON.parse(this.response);

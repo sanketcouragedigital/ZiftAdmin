@@ -4,7 +4,8 @@ if(!(sessionStorage.getItem("username")==="admin") && !(sessionStorage.getItem("
 }
 
 $(function() {
-	var url = "/dev/api/ziftapi.php?method=showPHD&format=json";
+	var env = environment.getenv();
+	var url = "/"+env+"/api/ziftapi.php?method=showPHD&format=json";
 	$("#listOfPartyHardDriverServices tbody").html("");
 	$.getJSON(url, function(response) {
 		if($.isArray(response.showPHDList) && response.showPHDList.length) {
@@ -50,8 +51,11 @@ function verifiedPHDService(mobileno, event, verifiedrow) {
 		method : 'verifyPHD',
 		format : 'json'
 	};
+	
+	var env = environment.getenv();
+	
 	jQuery.ajax({
-		url : '/dev/api/ziftapi.php',
+		url : '/'+env+'/api/ziftapi.php',
 		type : "POST",
 		data : data,
 		success : function() {
@@ -72,8 +76,11 @@ function deletePHDService(mobileno, imageName, event, delrow) {
 		method : 'deletePHD',
 		format : 'json'
 	};
+	
+	var env = environment.getenv();
+	
 	jQuery.ajax({
-		url : '/dev/api/ziftapi.php',
+		url : '/'+env+'/api/ziftapi.php',
 		type : "POST",
 		data : data,
 		success : function() {
